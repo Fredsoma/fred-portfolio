@@ -1,5 +1,6 @@
-// src/components/Header.tsx
+
 "use client";
+import Image from "next/image";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -27,7 +28,7 @@ export default function Header() {
     >
       <div className="max-w-4xl mx-auto flex justify-between items-center py-4 px-4">
         <Link href="/" className="flex items-center">
-          <img src="/logo.png" alt="Fred Soma Logo" className="h-20 w-auto" />
+          <Image src="/logo.png" alt="Fred Soma Logo" className="h-20 w-auto" />
         </Link>
 
         {/* Desktop nav */}
