@@ -7,13 +7,8 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Fred turned our outdated site into a scalable React app in under two months.",
-    author: "Jane Doe, Acme Corp",
-  },
-  {
-    quote:
-      "His code quality is impeccable; we saw a 40% performance boost after launch.",
-    author: "John Smith, Global Solutions",
+      "Fred turned our outdated site into a scalable React Site in a lap of time.",
+    author: "Nchouwat Adamou, Tranco Agency",
   },
 ];
 

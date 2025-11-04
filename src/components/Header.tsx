@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
+import logo from "@/assets/logo.png"; 
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,7 +29,7 @@ export default function Header() {
     >
       <div className="max-w-4xl mx-auto flex justify-between items-center py-4 px-4">
         <Link href="/" className="flex items-center">
-          <Image src="/logo.png" alt="Fred Soma Logo" className="h-20 w-auto" />
+          <Image src={logo} alt="Fred Soma Logo" className="h-20 w-auto" />
         </Link>
 
         {/* Desktop nav */}
