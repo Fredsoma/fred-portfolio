@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 
-
 const recipient = "tchimmoedjatcheemmanuel@gmail.com";
 const FORM_ACTION = `https://formsubmit.co/${encodeURIComponent(recipient)}`;
 
@@ -50,7 +49,7 @@ export default function Contact() {
       } else {
         setMessage({ type: "error", text: `Server replied: ${text || `status ${res.status}`}` });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("[Contact] fetch error:", err);
 
       // If fetch fails (CORS/network), try native submit once:
@@ -62,14 +61,25 @@ export default function Contact() {
             (form as HTMLFormElement).submit();
           } catch (submitErr) {
             console.error("[Contact] native submit failed:", submitErr);
-            setMessage({ type: "error", text: "Network error and native submit failed. Check console and FormSubmit dashboard." });
+
+            // Narrowing the original error if it's an Error to show a message with details.
+            if (submitErr instanceof Error) {
+              setMessage({ type: "error", text: `Network error and native submit failed: ${submitErr.message}` });
+            } else {
+              setMessage({ type: "error", text: "Network error and native submit failed. Check console and FormSubmit dashboard." });
+            }
             setLoading(false);
           }
         }, 50);
         return; // native submit will navigate away
       }
 
-      setMessage({ type: "error", text: "Network error. Check console or try again." });
+      // Narrow the error before using it.
+      if (err instanceof Error) {
+        setMessage({ type: "error", text: `Network error: ${err.message}` });
+      } else {
+        setMessage({ type: "error", text: "Network error. Check console or try again." });
+      }
     } finally {
       setLoading(false);
     }
